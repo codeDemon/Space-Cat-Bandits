@@ -1,0 +1,10 @@
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Ship2.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Textures\spaceBackground.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Space Cat Bandits.exe
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Space Cat Bandits.pdb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\obj\x86\Debug\Space Cat Bandits.exe
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\obj\x86\Debug\Space Cat Bandits.pdb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Beautiful_Darkness.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Beautiful_Darkness.wma
