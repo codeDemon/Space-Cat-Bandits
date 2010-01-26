@@ -22,11 +22,19 @@ namespace Space_Cat_Bandits
         private ScrollingBackground z_backgroundImage1;
         private ScrollingBackground z_backgroundImage2;
         private Rectangle z_viewportRec;
+        private float z_gameTimer;
+        private float z_interval1 = 15;
+        private GameObject z_achivementFail;
+        private bool z_achivementFailUnlocked = false;
         //Variables for GameObjects
         private PlayerShip z_playerShip;
         //Variables For Music
         private Song z_beautifulDarkness;
         private bool z_songStart = false;
+        private SoundEffect z_achivementSound;
+        //Variables For Text Fonts
+        private SpriteFont z_timerFont;
+        
         
         //Constructor -------------------------------------------------------------------------------------------
         public Main()
@@ -76,6 +84,16 @@ namespace Space_Cat_Bandits
             //Load the Music
             this.z_beautifulDarkness = Content.Load<Song>("Audio\\Beautiful_Darkness");
             MediaPlayer.IsRepeating = true;
+
+            //Load Fonts
+            this.z_timerFont = Content.Load<SpriteFont>("Fonts\\TimerFont");
+
+            //Load Achivement Stuff
+            this.z_achivementFail = new GameObject(Content.Load<Texture2D>("Images\\AchivementFailed"));
+            this.z_achivementFail.setPosition(new Vector2((this.z_viewportRec.Width/2)-(this.z_achivementFail.getSprite().Width/2),
+                                                            this.z_viewportRec.Height-100));
+            this.z_achivementSound = Content.Load<SoundEffect>("Audio\\AchievementSound");
+            
         }
 
 
@@ -88,7 +106,36 @@ namespace Space_Cat_Bandits
         //Main Update Method -------------------------------------------------------------------------------------
         protected override void Update(GameTime gameTime)
         {
-            //Play the Song
+            //Update The game Timer
+            /*
+             * if(game is not paused)
+             * //->Then update the gameTime
+             * //For changing events will be something like
+             * if(z_gameTimer >= some interval)
+             * {
+             *      //Do Some Stuff
+             *      //Unload current level
+             *      //Play a talk scene
+             *      //Load next level
+             *      z_gameTimer = 0.0f;
+             * }
+             * */
+
+            //Update GameTimer
+            this.z_gameTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            //Check Achivements
+            if (this.z_gameTimer > this.z_interval1 && !this.z_achivementFailUnlocked)
+            {
+                this.z_achivementFail.setIsAlive(true);
+                this.z_achivementSound.Play();
+                this.z_achivementFailUnlocked = true;
+            }
+            if (this.z_gameTimer > 21)
+                this.z_achivementFail.setIsAlive(false);
+
+
+            //Play Background Music
             if (!this.z_songStart)
             {
                 MediaPlayer.Play(this.z_beautifulDarkness);
@@ -109,7 +156,6 @@ namespace Space_Cat_Bandits
                 this.z_backgroundImage2.setPosition(new Vector2(0, 0.0f - this.z_viewportRec.Height));
                 //this.z_backgroundImage2.upDatePosition();
             }
-
             //The order of the upDatePosition Matters I think
             if (this.z_backgroundImage1.getPosition().Y > this.z_backgroundImage2.getPosition().Y)
             {
@@ -122,7 +168,7 @@ namespace Space_Cat_Bandits
                 this.z_backgroundImage2.upDatePosition();
             }
 
-
+            //########### Input for Controls and Options ########################################
 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -181,19 +227,30 @@ namespace Space_Cat_Bandits
             GraphicsDevice.Clear(Color.Black);
             this.z_spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
 
-            //Draw Background images           
-            this.z_spriteBatch.Draw(this.z_backgroundImage1.getSprite(), this.z_backgroundImage1.getPosition(),null,
-                Color.White, 0, new Vector2(0, 0), this.z_backgroundImage1.Scale(this.z_viewportRec)
-                ,SpriteEffects.None,1);                       
-            
-            this.z_spriteBatch.Draw(this.z_backgroundImage2.getSprite(), this.z_backgroundImage2.getPosition(), null,
-                Color.White, 0, new Vector2(0, 0), this.z_backgroundImage2.Scale(this.z_viewportRec)
-                , SpriteEffects.None, 1);
+            //Draw Background images
+            if(this.z_backgroundImage1.getIsAlive())
+                this.z_spriteBatch.Draw(this.z_backgroundImage1.getSprite(), this.z_backgroundImage1.getPosition(),null,
+                    Color.White, 0, new Vector2(0, 0), this.z_backgroundImage1.Scale(this.z_viewportRec)
+                    ,SpriteEffects.None,1);                       
+            if(this.z_backgroundImage2.getIsAlive())
+                this.z_spriteBatch.Draw(this.z_backgroundImage2.getSprite(), this.z_backgroundImage2.getPosition(), null,
+                    Color.White, 0, new Vector2(0, 0), this.z_backgroundImage2.Scale(this.z_viewportRec)
+                    ,SpriteEffects.None, 1);
             
             //Draw Player Ship
-            this.z_spriteBatch.Draw(this.z_playerShip.getSprite(),
-                                  this.z_playerShip.getPosition(),
-                                  Color.White);
+            if(this.z_playerShip.getIsAlive())
+                this.z_spriteBatch.Draw(this.z_playerShip.getSprite(),
+                                        this.z_playerShip.getPosition(),
+                                        Color.White);
+
+            //Draw Fonts
+            this.z_spriteBatch.DrawString(this.z_timerFont, "Time: " + Math.Round(z_gameTimer,2),
+                                          new Vector2(.01f * this.z_viewportRec.Width, .01f * this.z_viewportRec.Height),
+                                          Color.Yellow);
+
+            //Draw any achivements
+            if (this.z_achivementFail.getIsAlive())
+                this.z_spriteBatch.Draw(this.z_achivementFail.getSprite(), this.z_achivementFail.getPosition(), Color.White);
 
 
 

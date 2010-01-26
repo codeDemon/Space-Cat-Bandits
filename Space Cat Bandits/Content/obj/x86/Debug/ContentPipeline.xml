@@ -29,6 +29,33 @@
       <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Beautiful_Darkness.wma</Extra>
       <Time>2010-01-25T21:56:11.125-05:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\TimerFont.spritefont</Source>
+      <Name>Fonts\TimerFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Fonts\TimerFont.xnb</Output>
+      <Time>2010-01-26T03:00:47.265625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\AchivementFailed.png</Source>
+      <Name>Images\AchivementFailed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\AchivementFailed.xnb</Output>
+      <Time>2010-01-26T04:24:34.234375-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\AchievementSound.wav</Source>
+      <Name>Audio\AchievementSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\AchievementSound.xnb</Output>
+      <Time>2010-01-26T04:22:19-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

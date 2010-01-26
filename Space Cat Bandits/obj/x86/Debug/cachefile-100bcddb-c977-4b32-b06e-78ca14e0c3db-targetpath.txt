@@ -2,3 +2,6 @@ Content\Textures\spaceBackground.xnb
 Content\Images\Ship2.xnb
 Content\Audio\Beautiful_Darkness.xnb
 Content\Audio\Beautiful_Darkness.wma
+Content\Fonts\TimerFont.xnb
+Content\Images\AchivementFailed.xnb
+Content\Audio\AchievementSound.xnb
