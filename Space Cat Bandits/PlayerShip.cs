@@ -17,26 +17,26 @@ namespace Space_Cat_Bandits
     class PlayerShip : GameObject
     {
         //Instance Variables ----------------------------------------------------------------------------
-        private int health;
+        private int z_health;
 
         //Constructor -----------------------------------------------------------------------------------     
         public PlayerShip(Texture2D loadedSprite)
             : base(loadedSprite)
         {
-            this.health = 100;
+            this.z_health = 100;
         }
 
 
         //Accessor Methods ------------------------------------------------------------------------------
         public int getHealth()
         {
-            return this.health;
+            return this.z_health;
         }
 
         //Mutator Methods -------------------------------------------------------------------------------
         public void setHealth(int newHealth)
         {
-            this.health = newHealth;
+            this.z_health = newHealth;
         }
 
         //Other Methods ---------------------------------------------------------------------------------

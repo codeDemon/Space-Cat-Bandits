@@ -17,74 +17,74 @@ namespace Space_Cat_Bandits
     class GameObject
     {
         //Declare Instance Variables ----------------------------------------------------------------------------
-        private Texture2D sprite;
-        private Vector2 position;
-        private Vector2 velocity;
-        private float speed;
-        private bool isAlive;
+        private Texture2D z_sprite;
+        private Vector2 z_position;
+        private Vector2 z_velocity;
+        private float z_speed;
+        private bool z_isAlive;
 
 
         //Constructor -------------------------------------------------------------------------------------------
         public GameObject(Texture2D loadedTexture)
         {
             //Initialize all instance variables
-            this.sprite = loadedTexture;
-            this.position = Vector2.Zero;
-            this.velocity = Vector2.Zero;
-            this.speed = 0.0f;
-            this.isAlive = false;
+            this.z_sprite = loadedTexture;
+            this.z_position = Vector2.Zero;
+            this.z_velocity = Vector2.Zero;
+            this.z_speed = 0.0f;
+            this.z_isAlive = false;
         }
 
 
         //Access Methods ----------------------------------------------------------------------------------------
         public Texture2D getSprite()
         {
-            return this.sprite;
+            return this.z_sprite;
         }
         public Vector2 getPosition()
         {
-            return this.position;
+            return this.z_position;
         }
         public Vector2 getVelocity()
         {
-            return this.velocity;
+            return this.z_velocity;
         }
         public bool getIsAlive()
         {
-            return this.isAlive;
+            return this.z_isAlive;
         }
         public float getSpeed()
         {
-            return this.speed;
+            return this.z_speed;
         }
 
 
         //Mutator Methods ---------------------------------------------------------------------------------------
         public void setSprite(Texture2D newSprite)
         {
-            this.sprite = newSprite;
+            this.z_sprite = newSprite;
         }
         public void setPosition(Vector2 newPosition)
         {
-            this.position = newPosition;
+            this.z_position = newPosition;
         }
         public void setVelocity(Vector2 newVelocity)
         {
-            this.velocity = newVelocity;
+            this.z_velocity = newVelocity;
         }
         public void setIsAlive(bool isAlive)
         {
-            this.isAlive = isAlive;
+            this.z_isAlive = isAlive;
         }
         public void setSpeed(float newSpeed)
         {
-            this.speed = newSpeed;
+            this.z_speed = newSpeed;
         }
 
         //Other Methods -----------------------------------------------------------------------------------------
         public void upDatePosition()
         {
-            this.position += this.velocity;
+            this.z_position += this.z_velocity;
         }
 
 

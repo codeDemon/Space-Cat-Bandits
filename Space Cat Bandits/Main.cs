@@ -17,20 +17,21 @@ namespace Space_Cat_Bandits
     public class Main : Microsoft.Xna.Framework.Game
     {
         //Declare Instance Variables ----------------------------------------------------------------------------
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private Texture2D backgroundImage;
-        private Rectangle viewportRec;
+        private GraphicsDeviceManager z_graphics;
+        private SpriteBatch z_spriteBatch;
+        private ScrollingBackground z_backgroundImage1;
+        private ScrollingBackground z_backgroundImage2;
+        private Rectangle z_viewportRec;
         //Variables for GameObjects
-        private PlayerShip playerShip;
+        private PlayerShip z_playerShip;
         //Variables For Music
-        private Song beautifulDarkness;
-        private bool songStart = false;
-
+        private Song z_beautifulDarkness;
+        private bool z_songStart = false;
+        
         //Constructor -------------------------------------------------------------------------------------------
         public Main()
         {
-            this.graphics = new GraphicsDeviceManager(this);
+            this.z_graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -46,18 +47,34 @@ namespace Space_Cat_Bandits
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            this.spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Load the background Image
-            this.backgroundImage = Content.Load<Texture2D>("Textures\\spaceBackground");
-            this.viewportRec = new Rectangle(0, 0, graphics.GraphicsDevice.Viewport.Width,
-                                                graphics.GraphicsDevice.Viewport.Height);
+            this.z_spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //Set the viewPortRec
+            this.z_viewportRec = new Rectangle(0, 0, z_graphics.GraphicsDevice.Viewport.Width,
+                                                z_graphics.GraphicsDevice.Viewport.Height);
+            //Load the background Images
+            this.z_backgroundImage1 = new ScrollingBackground(Content.Load<Texture2D>("Textures\\spaceBackground"));
+            this.z_backgroundImage2 = new ScrollingBackground(Content.Load<Texture2D>("Textures\\spaceBackground"));
+
+            //Set the positions for the background Images
+            this.z_backgroundImage1.setPosition(new Vector2(0f, 0f));
+            this.z_backgroundImage2.setPosition(new Vector2(0f, 0f - this.z_viewportRec.Height));
+            
+            //Turn the background Images alive
+            this.z_backgroundImage1.setIsAlive(true);
+            this.z_backgroundImage2.setIsAlive(true);
+
             //Create the Player's ship image
-            this.playerShip = new PlayerShip(Content.Load<Texture2D>("Images\\ship2"));
+            this.z_playerShip = new PlayerShip(Content.Load<Texture2D>("Images\\ship2"));
             //Set the starting position for player's ship
-            this.playerShip.setPosition(new Vector2(graphics.GraphicsDevice.Viewport.Width / 2,
-                                                    graphics.GraphicsDevice.Viewport.Height - 80));
+            this.z_playerShip.setPosition(new Vector2(z_graphics.GraphicsDevice.Viewport.Width / 2,
+                                                    z_graphics.GraphicsDevice.Viewport.Height - 80));
+
+            //Set the player alive
+            this.z_playerShip.setIsAlive(true);
+
             //Load the Music
-            this.beautifulDarkness = Content.Load<Song>("Audio\\Beautiful_Darkness");
+            this.z_beautifulDarkness = Content.Load<Song>("Audio\\Beautiful_Darkness");
             MediaPlayer.IsRepeating = true;
         }
 
@@ -72,12 +89,41 @@ namespace Space_Cat_Bandits
         protected override void Update(GameTime gameTime)
         {
             //Play the Song
-            if (!this.songStart)
+            if (!this.z_songStart)
             {
-                MediaPlayer.Play(this.beautifulDarkness);
+                MediaPlayer.Play(this.z_beautifulDarkness);
                 MediaPlayer.Volume = 0.7f;
-                this.songStart = true;
+                this.z_songStart = true;
             }
+
+            //Update the Scrolling Background Images
+            if (this.z_backgroundImage1.getPosition().Y >= this.z_viewportRec.Height)
+            {
+                //Then it is off of the stage, reset it back at the top
+                this.z_backgroundImage1.setPosition(new Vector2(0, 0.0f - this.z_viewportRec.Height));
+                //this.z_backgroundImage1.upDatePosition();
+            }
+            if (this.z_backgroundImage2.getPosition().Y >= this.z_viewportRec.Height)
+            {
+                //Then it is off of the stage, reset it back at the top
+                this.z_backgroundImage2.setPosition(new Vector2(0, 0.0f - this.z_viewportRec.Height));
+                //this.z_backgroundImage2.upDatePosition();
+            }
+
+            //The order of the upDatePosition Matters I think
+            if (this.z_backgroundImage1.getPosition().Y > this.z_backgroundImage2.getPosition().Y)
+            {
+                this.z_backgroundImage2.upDatePosition();
+                this.z_backgroundImage1.upDatePosition();
+            }
+            else
+            {
+                this.z_backgroundImage1.upDatePosition();
+                this.z_backgroundImage2.upDatePosition();
+            }
+
+
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -87,9 +133,9 @@ namespace Space_Cat_Bandits
 
             //Input for moving the player's ship on the xbox360
 
-            this.playerShip.setVelocity(new Vector2(gamePadState.ThumbSticks.Left.X * 0.07f,
+            this.z_playerShip.setVelocity(new Vector2(gamePadState.ThumbSticks.Left.X * 0.07f,
                                                     gamePadState.ThumbSticks.Left.Y * 0.07f));
-            this.playerShip.upDatePosition();
+            this.z_playerShip.upDatePosition();
 #if !XBOX
             //Local Variables for Keyboard
             KeyboardState keyboardState = Keyboard.GetState();
@@ -97,29 +143,29 @@ namespace Space_Cat_Bandits
             //Input for moving the player's ship on the keyboard
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
-                if (this.playerShip.getPosition().X > 0)
-                    this.playerShip.setPosition(new Vector2(this.playerShip.getPosition().X - 3,
-                                                            this.playerShip.getPosition().Y));
+                if (this.z_playerShip.getPosition().X > 0)
+                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X - 3,
+                                                            this.z_playerShip.getPosition().Y));
             }
             if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
-                if (this.playerShip.getPosition().X + this.playerShip.getSprite().Width
-                    < graphics.GraphicsDevice.Viewport.Width)
-                    this.playerShip.setPosition(new Vector2(this.playerShip.getPosition().X + 3,
-                                                            this.playerShip.getPosition().Y));
+                if (this.z_playerShip.getPosition().X + this.z_playerShip.getSprite().Width
+                    < z_graphics.GraphicsDevice.Viewport.Width)
+                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X + 3,
+                                                            this.z_playerShip.getPosition().Y));
             }
             if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
             {
-                if (this.playerShip.getPosition().Y > 0)
-                    this.playerShip.setPosition(new Vector2(this.playerShip.getPosition().X,
-                                                            this.playerShip.getPosition().Y - 3));
+                if (this.z_playerShip.getPosition().Y > 0)
+                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X,
+                                                            this.z_playerShip.getPosition().Y - 3));
             }
             if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
             {
-                if (this.playerShip.getPosition().Y + this.playerShip.getSprite().Height <
-                    graphics.GraphicsDevice.Viewport.Height)
-                    this.playerShip.setPosition(new Vector2(this.playerShip.getPosition().X,
-                                                            this.playerShip.getPosition().Y + 3));
+                if (this.z_playerShip.getPosition().Y + this.z_playerShip.getSprite().Height <
+                    z_graphics.GraphicsDevice.Viewport.Height)
+                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X,
+                                                            this.z_playerShip.getPosition().Y + 3));
             }
 #endif
 
@@ -132,18 +178,26 @@ namespace Space_Cat_Bandits
         protected override void Draw(GameTime gameTime)
         {
             //Clear all images
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            this.spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
-            //Draw Background image
-            this.spriteBatch.Draw(this.backgroundImage, this.viewportRec, Color.White);
+            GraphicsDevice.Clear(Color.Black);
+            this.z_spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
+
+            //Draw Background images           
+            this.z_spriteBatch.Draw(this.z_backgroundImage1.getSprite(), this.z_backgroundImage1.getPosition(),null,
+                Color.White, 0, new Vector2(0, 0), this.z_backgroundImage1.Scale(this.z_viewportRec)
+                ,SpriteEffects.None,1);                       
+            
+            this.z_spriteBatch.Draw(this.z_backgroundImage2.getSprite(), this.z_backgroundImage2.getPosition(), null,
+                Color.White, 0, new Vector2(0, 0), this.z_backgroundImage2.Scale(this.z_viewportRec)
+                , SpriteEffects.None, 1);
+            
             //Draw Player Ship
-            this.spriteBatch.Draw(this.playerShip.getSprite(),
-                                  this.playerShip.getPosition(),
+            this.z_spriteBatch.Draw(this.z_playerShip.getSprite(),
+                                  this.z_playerShip.getPosition(),
                                   Color.White);
 
 
 
-            this.spriteBatch.End();
+            this.z_spriteBatch.End();
 
             base.Draw(gameTime);
         }
