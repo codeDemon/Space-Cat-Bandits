@@ -26,6 +26,9 @@ namespace Space_Cat_Bandits
         private float z_interval1 = 15;
         private GameObject z_achivementFail;
         private bool z_achivementFailUnlocked = false;
+        private ContentManager z_contentManager;
+        //The Asteroid Manager
+        private AsteroidManager z_asteroidManager;
         //Variables for GameObjects
         private PlayerShip z_playerShip;
         //Variables For Music
@@ -54,6 +57,9 @@ namespace Space_Cat_Bandits
         //Load Content Method -----------------------------------------------------------------------------------
         protected override void LoadContent()
         {
+            //Set the contentManger
+            this.z_contentManager = new ContentManager(Services);
+
             // Create a new SpriteBatch, which can be used to draw textures.
             this.z_spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -93,6 +99,10 @@ namespace Space_Cat_Bandits
             this.z_achivementFail.setPosition(new Vector2((this.z_viewportRec.Width/2)-(this.z_achivementFail.getSprite().Width/2),
                                                             this.z_viewportRec.Height-100));
             this.z_achivementSound = Content.Load<SoundEffect>("Audio\\AchievementSound");
+
+            //Load the Settings for the asteroidManager
+            this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Moderate, this.z_viewportRec,
+                                                         this.z_contentManager, this.z_spriteBatch);
             
         }
 
@@ -167,6 +177,9 @@ namespace Space_Cat_Bandits
                 this.z_backgroundImage1.upDatePosition();
                 this.z_backgroundImage2.upDatePosition();
             }
+
+            //Update Asteroid Manager
+            this.z_asteroidManager.updateAsteroids();
 
             //########### Input for Controls and Options ########################################
 
@@ -251,6 +264,11 @@ namespace Space_Cat_Bandits
             //Draw any achivements
             if (this.z_achivementFail.getIsAlive())
                 this.z_spriteBatch.Draw(this.z_achivementFail.getSprite(), this.z_achivementFail.getPosition(), Color.White);
+
+            //Draw any asteroids from AsteroidManager
+            this.z_asteroidManager.drawAsteroids();
+
+
 
 
 

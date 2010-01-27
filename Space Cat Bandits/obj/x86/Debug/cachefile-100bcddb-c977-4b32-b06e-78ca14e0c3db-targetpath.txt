@@ -5,3 +5,8 @@ Content\Audio\Beautiful_Darkness.wma
 Content\Fonts\TimerFont.xnb
 Content\Images\AchivementFailed.xnb
 Content\Audio\AchievementSound.xnb
+Content\Images\Asteroids\Asteroid1.xnb
+Content\Images\Asteroids\Asteroid2.xnb
+Content\Images\Asteroids\Asteroid3.xnb
+Content\Images\Asteroids\Asteroid4.xnb
+Content\Images\Asteroids\Asteroid5.xnb

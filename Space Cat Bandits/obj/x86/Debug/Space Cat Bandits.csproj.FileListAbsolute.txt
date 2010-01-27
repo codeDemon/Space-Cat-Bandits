@@ -11,3 +11,8 @@ C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space C
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Fonts\TimerFont.xnb
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\AchivementFailed.xnb
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\AchievementSound.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid1.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid2.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid3.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid4.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid5.xnb

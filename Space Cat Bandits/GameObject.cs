@@ -31,7 +31,7 @@ namespace Space_Cat_Bandits
             this.z_sprite = loadedTexture;
             this.z_position = Vector2.Zero;
             this.z_velocity = Vector2.Zero;
-            this.z_speed = 0.0f;
+            this.z_speed = 1.0f;
             this.z_isAlive = false;
         }
 
@@ -85,6 +85,13 @@ namespace Space_Cat_Bandits
         public void upDatePosition()
         {
             this.z_position += this.z_velocity;
+        }
+
+        //Use this method for updating position if a speed is set
+        public void upDatePositionWithSpeed()
+        {
+            this.z_position += new Vector2(this.z_velocity.X * this.z_speed,
+                                           this.z_velocity.Y * this.z_speed);
         }
 
 

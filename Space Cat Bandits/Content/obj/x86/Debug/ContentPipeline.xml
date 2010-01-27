@@ -56,6 +56,51 @@
       <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\AchievementSound.xnb</Output>
       <Time>2010-01-26T04:22:19-05:00</Time>
     </Item>
+    <Item>
+      <Source>Images\Asteroids\Asteroid1.png</Source>
+      <Name>Images\Asteroids\Asteroid1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid1.xnb</Output>
+      <Time>2010-01-26T23:33:44.40625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Asteroids\Asteroid2.png</Source>
+      <Name>Images\Asteroids\Asteroid2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid2.xnb</Output>
+      <Time>2010-01-26T23:33:44.40625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Asteroids\Asteroid3.png</Source>
+      <Name>Images\Asteroids\Asteroid3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid3.xnb</Output>
+      <Time>2010-01-26T23:33:44.40625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Asteroids\Asteroid4.png</Source>
+      <Name>Images\Asteroids\Asteroid4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid4.xnb</Output>
+      <Time>2010-01-26T19:09:50.109375-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Asteroids\Asteroid5.png</Source>
+      <Name>Images\Asteroids\Asteroid5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid5.xnb</Output>
+      <Time>2010-01-26T19:09:50.109375-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
