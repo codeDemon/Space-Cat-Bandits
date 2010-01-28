@@ -80,8 +80,9 @@ namespace Space_Cat_Bandits
 
             //Create the Player's ship image
             this.z_playerShip = new PlayerShip(Content.Load<Texture2D>("Images\\ship2"));
+            
             //Set the starting position for player's ship
-            this.z_playerShip.setPosition(new Vector2(z_graphics.GraphicsDevice.Viewport.Width / 2,
+            this.z_playerShip.setPosition(new Vector2(this.z_viewportRec.Center.X,
                                                     z_graphics.GraphicsDevice.Viewport.Height - 80));
 
             //Set the player alive
@@ -249,6 +250,9 @@ namespace Space_Cat_Bandits
                 this.z_spriteBatch.Draw(this.z_backgroundImage2.getSprite(), this.z_backgroundImage2.getPosition(), null,
                     Color.White, 0, new Vector2(0, 0), this.z_backgroundImage2.Scale(this.z_viewportRec)
                     ,SpriteEffects.None, 1);
+
+            //Draw any asteroids from AsteroidManager
+            this.z_asteroidManager.drawAsteroids();
             
             //Draw Player Ship
             if(this.z_playerShip.getIsAlive())
@@ -265,8 +269,7 @@ namespace Space_Cat_Bandits
             if (this.z_achivementFail.getIsAlive())
                 this.z_spriteBatch.Draw(this.z_achivementFail.getSprite(), this.z_achivementFail.getPosition(), Color.White);
 
-            //Draw any asteroids from AsteroidManager
-            this.z_asteroidManager.drawAsteroids();
+            
 
 
 

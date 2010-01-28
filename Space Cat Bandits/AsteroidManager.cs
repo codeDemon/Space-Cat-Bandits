@@ -148,7 +148,7 @@ namespace Space_Cat_Bandits
             foreach (Asteroid asteroid in this.z_asteroidHolder)
                 this.z_spriteBatch.Draw(asteroid.getSprite(), asteroid.getPosition(), null,
                                         Color.White, asteroid.getRotation(), asteroid.getCenter(), 1.0f,
-                                        SpriteEffects.None, 1);
+                                        SpriteEffects.None, 0);
         }
 
 
@@ -167,7 +167,10 @@ namespace Space_Cat_Bandits
                                        ("Images\\Asteroids\\Asteroid" + this.getRandomImage()));
                     asteroid.setPosition(new Vector2(this.getRandomWidth(), this.getRandomHeight()));
                     asteroid.setSpeed(this.getRandomSpeed());
-                    asteroid.setRotationSpeed(this.getRandomRotationSpeed());
+                    //Because The rotation is perfectly centered, asteroids that move slow look really
+                    //Off balance. So instead I'm temporarily scaling rotation speed with the asteroids traveling speed
+                    //asteroid.setRotationSpeed(this.getRandomRotationSpeed());
+                    asteroid.setRotationSpeed((asteroid.getSpeed() / 50)*this.getRandomRotationDirection());
                     asteroid.setIsAlive(true);
                 }
 
@@ -208,6 +211,11 @@ namespace Space_Cat_Bandits
         {
             return this.z_randomGenerator.Next(this.z_minImage, this.z_maxImage+1);
         }
-
+        private int getRandomRotationDirection()
+        {
+            if (this.z_randomGenerator.Next(0,2) == 0)
+                return 1;
+            return -1;
+        }
     }
 }
