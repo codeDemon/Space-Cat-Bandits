@@ -23,10 +23,14 @@ namespace Space_Cat_Bandits
         private ScrollingBackground z_backgroundImage2;
         private Rectangle z_viewportRec;
         private float z_gameTimer;
+        private float z_accelTimerX = 0;
+        private float z_accelTimerY = 0;
         private float z_interval1 = 15;
         private GameObject z_achivementFail;
         private bool z_achivementFailUnlocked = false;
         private ContentManager z_contentManager;
+        private GamePadState z_previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        private KeyboardState z_previousKeyboardState = Keyboard.GetState();
         //The Asteroid Manager
         private AsteroidManager z_asteroidManager;
         //Variables for GameObjects
@@ -89,7 +93,7 @@ namespace Space_Cat_Bandits
             this.z_playerShip.setIsAlive(true);
 
             //Load the Music
-            this.z_beautifulDarkness = Content.Load<Song>("Audio\\Beautiful_Darkness");
+            this.z_beautifulDarkness = Content.Load<Song>("Audio\\OutSideMyComfortZone");
             MediaPlayer.IsRepeating = true;
 
             //Load Fonts
@@ -184,49 +188,117 @@ namespace Space_Cat_Bandits
 
             //########### Input for Controls and Options ########################################
 
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
 
-            //Local Variables for 360 controller
-            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+            //For Xbox controller 1
+            if (GamePad.GetState(PlayerIndex.One).IsConnected)
+            {
+                // Allows the game to exit
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                    this.Exit();
 
-            //Input for moving the player's ship on the xbox360
+                //Local Variables for 360 controller
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-            this.z_playerShip.setVelocity(new Vector2(gamePadState.ThumbSticks.Left.X * 0.07f,
-                                                    gamePadState.ThumbSticks.Left.Y * 0.07f));
-            this.z_playerShip.upDatePosition();
+                //Input for moving the player's ship on the xbox360
+
+                this.z_playerShip.setVelocity(new Vector2(gamePadState.ThumbSticks.Left.X * 0.07f,
+                                                        gamePadState.ThumbSticks.Left.Y * 0.07f));
+                this.z_playerShip.upDatePosition();
+
+
+
+                //At the end of Xbox Controller Updates
+                this.z_previousGamePadState = gamePadState;
+            }
+
+
+            //For Keyboard
 #if !XBOX
             //Local Variables for Keyboard
             KeyboardState keyboardState = Keyboard.GetState();
+            
 
-            //Input for moving the player's ship on the keyboard
+            //Input for accelerating the ship --------------------------------------------------------
+            //Move Left
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
-                if (this.z_playerShip.getPosition().X > 0)
-                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X - 3,
-                                                            this.z_playerShip.getPosition().Y));
+                if (z_accelTimerX < 100)
+                    z_accelTimerX += (float)gameTime.ElapsedGameTime.Milliseconds;
+                else
+                    if (this.z_playerShip.getPosition().X > 1)
+                    {
+                        this.z_playerShip.accelerateLeft();
+                        z_accelTimerX = 0;
+                    }
             }
-            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
+            //Move Right
+            else if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
-                if (this.z_playerShip.getPosition().X + this.z_playerShip.getSprite().Width
-                    < z_graphics.GraphicsDevice.Viewport.Width)
-                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X + 3,
-                                                            this.z_playerShip.getPosition().Y));
+                if (z_accelTimerX < 100)
+                    z_accelTimerX += (float)gameTime.ElapsedGameTime.Milliseconds;
+                else
+                    if (this.z_playerShip.getPosition().X + this.z_playerShip.getSprite().Width < 
+                        this.z_graphics.GraphicsDevice.Viewport.Width - 1)
+                    {
+                        this.z_playerShip.accelerateRight();
+                        z_accelTimerX = 0;
+                    }
             }
+            //Move Up
             if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
             {
-                if (this.z_playerShip.getPosition().Y > 0)
-                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X,
-                                                            this.z_playerShip.getPosition().Y - 3));
+                if (z_accelTimerY < 100)
+                    z_accelTimerY += (float)gameTime.ElapsedGameTime.Milliseconds;
+                else
+                    if (this.z_playerShip.getPosition().Y > 1)
+                    {
+                        this.z_playerShip.accelerateUp();
+                        z_accelTimerY = 0;
+                    }
             }
-            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
+            //Move Down
+            else if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
             {
-                if (this.z_playerShip.getPosition().Y + this.z_playerShip.getSprite().Height <
-                    z_graphics.GraphicsDevice.Viewport.Height)
-                    this.z_playerShip.setPosition(new Vector2(this.z_playerShip.getPosition().X,
-                                                            this.z_playerShip.getPosition().Y + 3));
+                if (z_accelTimerY < 100)
+                    z_accelTimerY += (float)gameTime.ElapsedGameTime.Milliseconds;
+                else
+                    if (this.z_playerShip.getPosition().Y + this.z_playerShip.getSprite().Height < 
+                        this.z_graphics.GraphicsDevice.Viewport.Height - 1)
+                    {
+                        this.z_playerShip.accelerateDown();
+                        z_accelTimerY = 0;
+                    }
             }
+
+            //Check if a key was let go for deAccelerating to a stop -------------------------------------
+            if ((this.z_previousKeyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.Left)) ||
+                (this.z_previousKeyboardState.IsKeyDown(Keys.A) && keyboardState.IsKeyUp(Keys.A)))
+            {
+                this.z_playerShip.setIsSlowingDownX(true);
+            }
+            else if ((this.z_previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||
+                (this.z_previousKeyboardState.IsKeyDown(Keys.D) && keyboardState.IsKeyUp(Keys.D)))
+            {
+                this.z_playerShip.setIsSlowingDownX(true);
+            }
+            if ((this.z_previousKeyboardState.IsKeyDown(Keys.Up) && keyboardState.IsKeyUp(Keys.Up)) ||
+                (this.z_previousKeyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyUp(Keys.W)))
+            {
+                this.z_playerShip.setIsSlowingDownY(true);
+            }
+            else if ((this.z_previousKeyboardState.IsKeyDown(Keys.Down) && keyboardState.IsKeyUp(Keys.Down)) ||
+                (this.z_previousKeyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyUp(Keys.S)))
+            {
+                this.z_playerShip.setIsSlowingDownY(true);
+            }
+
+
+            //Perform the Update on The Ship
+            this.z_playerShip.playerShipUpdate(gameTime, this.z_viewportRec);
+
+
+            //End of Keyboard Updates
+            this.z_previousKeyboardState = keyboardState;
 #endif
 
 

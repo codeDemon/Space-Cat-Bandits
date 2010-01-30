@@ -101,6 +101,16 @@
       <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Asteroids\Asteroid5.xnb</Output>
       <Time>2010-01-26T19:09:50.109375-05:00</Time>
     </Item>
+    <Item>
+      <Source>Audio\OutsideMyComfortZone.mp3</Source>
+      <Name>Audio\OutsideMyComfortZone</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\OutsideMyComfortZone.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\OutsideMyComfortZone.wma</Extra>
+      <Time>2010-01-30T03:37:18.453125-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
