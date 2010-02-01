@@ -168,6 +168,8 @@ namespace Space_Cat_Bandits
                 {
                     //Game Over
                     this.setHealth(100);
+                    this.setHitRec(new Rectangle(0, 0, 0, 0));
+                    return;
                 }
 
             }
