@@ -26,6 +26,7 @@ namespace Space_Cat_Bandits
 
         //Instance Variables ----------------------------------------------------------------------------
         private int z_health;
+        private int z_lives;
         private float z_maxSpeed;
         private float z_acceleration;
         private bool z_IsSlowingDownX;
@@ -34,9 +35,13 @@ namespace Space_Cat_Bandits
         private float z_accelTimerY;
         private AccelerationState currentXstate;
         private AccelerationState currentYstate;
+        private bool z_IsInvincible;
+        private float z_InvincibleTimer;
+        private float z_drawTimer;
+        private Vector2 z_startingPosition;
 
         //Constructor -----------------------------------------------------------------------------------     
-        public PlayerShip(Texture2D loadedSprite)
+        public PlayerShip(Texture2D loadedSprite, Vector2 startingPosition)
             : base(loadedSprite)
         {
             this.z_health = 100;
@@ -48,6 +53,12 @@ namespace Space_Cat_Bandits
             this.z_accelTimerY = 0;
             this.currentXstate = AccelerationState.zero;
             this.currentYstate = AccelerationState.zero;
+            this.z_lives = 10;
+            this.z_IsInvincible = true;
+            this.z_InvincibleTimer = 0;
+            this.z_drawTimer = 0;
+            this.z_startingPosition = startingPosition;
+            this.setPosition(z_startingPosition);
         }
 
 
@@ -64,6 +75,14 @@ namespace Space_Cat_Bandits
         {
             return this.z_IsSlowingDownY;
         }
+        public int getLives()
+        {
+            return this.z_lives;
+        }
+        public bool getIsInvincible()
+        {
+            return this.z_IsInvincible;
+        }
 
         //Mutator Methods -------------------------------------------------------------------------------
         public void setHealth(int newHealth)
@@ -77,6 +96,14 @@ namespace Space_Cat_Bandits
         public void setIsSlowingDownY(bool isIt)
         {
             this.z_IsSlowingDownY = isIt;
+        }
+        public void setLives(int newLives)
+        {
+            this.z_lives = newLives;
+        }
+        public void setIsInvincible(bool itIs)
+        {
+            this.z_IsInvincible = itIs;
         }
 
         //Acceleration Methods ---------------------------------------------------------------------------------
@@ -126,6 +153,52 @@ namespace Space_Cat_Bandits
         //The main Update Method for the Player Ship --------------------------------------------------------
         public void playerShipUpdate(GameTime gameTime, Rectangle viewPort)
         {
+            //Check to see if the player is alive
+            if (!this.getIsAlive())
+            {
+                //If any lives left, then revive
+                if (this.z_lives > 0)
+                {
+                    this.z_IsInvincible = true;
+                    this.setIsAlive(true);
+                    this.setPosition(this.z_startingPosition);
+                    this.setHealth(100);
+                }
+                else
+                {
+                    //Game Over
+                    this.setHealth(100);
+                }
+
+            }
+
+            //Check to see if the player has any health
+            if (this.z_health <= 0)
+            {
+                this.setIsAlive(false);
+                this.z_lives--;
+                return;
+            }
+
+            //Update the ships Hit Region
+            if (this.z_IsInvincible)
+            {
+                //While in Invincible/Recovery mode, ship can not collide
+                this.setHitRec(new Rectangle(0, 0, 0, 0));
+                if (this.z_InvincibleTimer > 3000)
+                {
+                    this.z_IsInvincible = false;
+                    this.z_InvincibleTimer = 0;
+                    this.z_drawTimer = 0;
+                }
+                else
+                    this.z_InvincibleTimer += gameTime.ElapsedGameTime.Milliseconds;
+            }
+            else
+                this.setHitRec(new Rectangle((int)this.getPosition().X, (int)this.getPosition().Y,
+                                             this.getSprite().Width, this.getSprite().Height));
+            
+
             //Ensure that the ship can not leave the viewPort ever
             if((this.getPosition().X <= 1 && this.currentXstate == AccelerationState.negative) || 
                 (this.getPosition().X + this.getSprite().Width >= (float)viewPort.Width - 1 && 
@@ -250,6 +323,40 @@ namespace Space_Cat_Bandits
             this.setVelocity(new Vector2(this.getVelocity().X, 0));
             this.z_IsSlowingDownY = false;
         }
+
+
+
+
+        //Draw Method for PlayerShip
+        public void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (!this.getIsAlive())
+                return;
+            if (!this.z_IsInvincible)
+                spriteBatch.Draw(this.getSprite(), this.getPosition(), Color.White);
+            else
+            {
+                if (this.z_drawTimer >= 0 && this.z_drawTimer < 100)
+                {
+                    spriteBatch.Draw(this.getSprite(), this.getPosition(), new Color(.8f,.8f,.8f,0.40f));
+                    this.z_drawTimer += gameTime.ElapsedGameTime.Milliseconds;
+
+                }
+                else if (this.z_drawTimer >= 100 && this.z_drawTimer < 200)
+                {
+                    spriteBatch.Draw(this.getSprite(), this.getPosition(), new Color(.8f,.8f,.8f,0.80f));
+                    this.z_drawTimer += gameTime.ElapsedGameTime.Milliseconds;
+
+                }
+                else
+                    this.z_drawTimer = 0;
+
+            }
+        }
+
+
+
+
 
     }
 }

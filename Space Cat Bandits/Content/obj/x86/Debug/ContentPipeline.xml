@@ -20,16 +20,6 @@
       <Time>2010-01-25T21:51:13.34375-05:00</Time>
     </Item>
     <Item>
-      <Source>Audio\Beautiful_Darkness.mp3</Source>
-      <Name>Audio\Beautiful_Darkness</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Beautiful_Darkness.xnb</Output>
-      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Beautiful_Darkness.wma</Extra>
-      <Time>2010-01-25T21:56:11.125-05:00</Time>
-    </Item>
-    <Item>
       <Source>Fonts\TimerFont.spritefont</Source>
       <Name>Fonts\TimerFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -46,15 +36,6 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\AchivementFailed.xnb</Output>
       <Time>2010-01-26T04:24:34.234375-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\AchievementSound.wav</Source>
-      <Name>Audio\AchievementSound</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\AchievementSound.xnb</Output>
-      <Time>2010-01-26T04:22:19-05:00</Time>
     </Item>
     <Item>
       <Source>Images\Asteroids\Asteroid1.png</Source>
@@ -102,14 +83,60 @@
       <Time>2010-01-26T19:09:50.109375-05:00</Time>
     </Item>
     <Item>
-      <Source>Audio\OutsideMyComfortZone.mp3</Source>
-      <Name>Audio\OutsideMyComfortZone</Name>
+      <Source>Images\Missles\Ball1.png</Source>
+      <Name>Images\Missles\Ball1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\Missles\Ball1.xnb</Output>
+      <Time>2010-01-31T17:30:13.9319384-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\Beautiful_Darkness.mp3</Source>
+      <Name>Audio\Music\Beautiful_Darkness</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\OutsideMyComfortZone.xnb</Output>
-      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\OutsideMyComfortZone.wma</Extra>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Beautiful_Darkness.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Beautiful_Darkness.wma</Extra>
+      <Time>2010-01-25T21:56:11.125-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\OutsideMyComfortZone.mp3</Source>
+      <Name>Audio\Music\OutsideMyComfortZone</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\OutsideMyComfortZone.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\OutsideMyComfortZone.wma</Extra>
       <Time>2010-01-30T03:37:18.453125-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\SoundFX\AchievementSound.wav</Source>
+      <Name>Audio\SoundFX\AchievementSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\SoundFX\AchievementSound.xnb</Output>
+      <Time>2010-01-26T04:22:19-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\SoundFX\LaserPellet.wav</Source>
+      <Name>Audio\SoundFX\LaserPellet</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\SoundFX\LaserPellet.xnb</Output>
+      <Time>2010-01-31T18:40:06.3069384-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\LivesFont.spritefont</Source>
+      <Name>Fonts\LivesFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Fonts\LivesFont.xnb</Output>
+      <Time>2010-01-31T22:41:42.3538134-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -44,6 +44,7 @@ namespace Space_Cat_Bandits
         private Rectangle z_viewPort;
         private ContentManager z_content;
         private SpriteBatch z_spriteBatch;
+        
 
 
         //Constructor
@@ -71,6 +72,7 @@ namespace Space_Cat_Bandits
             this.z_content = content;
             this.z_content.RootDirectory = "Content";
             this.z_spriteBatch = spriteBatch;
+            
 
             //Start Populating Asteroids after all variables have been initialized
             this.populateAsteroids();
@@ -153,13 +155,15 @@ namespace Space_Cat_Bandits
 
 
         //Method for Updating the asteroids
-        public void updateAsteroids()
+        public void updateAsteroids(PlayerShip playerShip)
         {
             foreach (Asteroid asteroid in this.z_asteroidHolder)
             {
                 //If the asteroid has gone off the screen, reset it back to the top
-                if (asteroid.getPosition().Y > this.z_viewPort.Height+(asteroid.getSprite().Height*1.5))
+                if (asteroid.getPosition().Y > this.z_viewPort.Height+(asteroid.getSprite().Height*1.5) ||
+                    asteroid.getHasBeenHit())
                 {
+                    asteroid.sethasBeenHit(false);
                     //Then reset it and rerandomize it's variables
                     //Not sure if reloading a new image for each asteroid is a good idea
                     //Might cause game lag**
@@ -173,6 +177,14 @@ namespace Space_Cat_Bandits
                     asteroid.setRotationSpeed((asteroid.getSpeed() / 50)*this.getRandomRotationDirection());
                     asteroid.setIsAlive(true);
                 }
+
+                //If an asteroid has hit the player, then do something
+                if (asteroid.getHitRec().Intersects(playerShip.getHitRec()))
+                {
+                    asteroid.sethasBeenHit(true);
+                    playerShip.setHealth(0);
+                }
+
 
                 //Otherwise Update it's new position
                 asteroid.AstroUpdate();

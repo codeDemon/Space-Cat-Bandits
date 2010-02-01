@@ -52,7 +52,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\Beautiful_Darkness.mp3">
+    <Compile Include="Audio\Music\Beautiful_Darkness.mp3">
       <Name>Beautiful_Darkness</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
@@ -66,7 +66,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AchievementSound.wav">
+    <Compile Include="Audio\SoundFX\AchievementSound.wav">
       <Name>AchievementSound</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
@@ -109,10 +109,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\OutsideMyComfortZone.mp3">
+    <Compile Include="Audio\Music\OutsideMyComfortZone.mp3">
       <Name>OutsideMyComfortZone</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Missles\Ball1.png">
+      <Name>Ball1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\SoundFX\LaserPellet.wav">
+      <Name>LaserPellet</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\LivesFont.spritefont">
+      <Name>LivesFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

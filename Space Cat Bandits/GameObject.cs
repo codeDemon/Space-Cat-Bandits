@@ -22,6 +22,10 @@ namespace Space_Cat_Bandits
         private Vector2 z_velocity;
         private float z_speed;
         private bool z_isAlive;
+        //For Hit Detection Purposes
+        private bool z_isKillerObject;
+        private bool z_isPickUp;
+        private Rectangle z_hitRec;
 
 
         //Constructor -------------------------------------------------------------------------------------------
@@ -33,6 +37,9 @@ namespace Space_Cat_Bandits
             this.z_velocity = Vector2.Zero;
             this.z_speed = 1.0f;
             this.z_isAlive = false;
+            this.z_hitRec = new Rectangle(0, 0, 0, 0);
+            this.z_isKillerObject = false;
+            this.z_isPickUp = false;
         }
 
 
@@ -57,6 +64,18 @@ namespace Space_Cat_Bandits
         {
             return this.z_speed;
         }
+        public bool getIsKillerObject()
+        {
+            return this.z_isKillerObject;
+        }
+        public bool getIsPickUp()
+        {
+            return this.z_isPickUp;
+        }
+        public Rectangle getHitRec()
+        {
+            return this.z_hitRec;
+        }
 
 
         //Mutator Methods ---------------------------------------------------------------------------------------
@@ -80,6 +99,23 @@ namespace Space_Cat_Bandits
         {
             this.z_speed = newSpeed;
         }
+        public void setIsKillerObject(bool isKiller)
+        {
+            if (isKiller == true && this.z_isPickUp)
+                this.z_isPickUp = false;
+            this.z_isKillerObject = isKiller;
+        }
+        public void setIsPickUp(bool isPickup)
+        {
+            if (this.z_isKillerObject && isPickup == true)
+                this.z_isKillerObject = false;
+            this.z_isPickUp = isPickup;
+        }
+        public void setHitRec(Rectangle newHitRec)
+        {
+            this.z_hitRec = newHitRec;
+        }
+
 
         //Other Methods -----------------------------------------------------------------------------------------
         public void upDatePosition()

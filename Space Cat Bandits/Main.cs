@@ -31,8 +31,11 @@ namespace Space_Cat_Bandits
         private ContentManager z_contentManager;
         private GamePadState z_previousGamePadState = GamePad.GetState(PlayerIndex.One);
         private KeyboardState z_previousKeyboardState = Keyboard.GetState();
+        private Vector2 z_startingPosition;
         //The Asteroid Manager
         private AsteroidManager z_asteroidManager;
+        //The Missle Manager
+        private MissleManager z_missleManager;
         //Variables for GameObjects
         private PlayerShip z_playerShip;
         //Variables For Music
@@ -41,6 +44,7 @@ namespace Space_Cat_Bandits
         private SoundEffect z_achivementSound;
         //Variables For Text Fonts
         private SpriteFont z_timerFont;
+        private SpriteFont z_livesFont;
         
         
         //Constructor -------------------------------------------------------------------------------------------
@@ -82,32 +86,37 @@ namespace Space_Cat_Bandits
             this.z_backgroundImage1.setIsAlive(true);
             this.z_backgroundImage2.setIsAlive(true);
 
-            //Create the Player's ship image
-            this.z_playerShip = new PlayerShip(Content.Load<Texture2D>("Images\\ship2"));
-            
             //Set the starting position for player's ship
-            this.z_playerShip.setPosition(new Vector2(this.z_viewportRec.Center.X,
-                                                    z_graphics.GraphicsDevice.Viewport.Height - 80));
+            this.z_startingPosition = new Vector2(this.z_viewportRec.Center.X,
+                                                    z_graphics.GraphicsDevice.Viewport.Height - 80);
+
+            //Create the Player's ship image
+            this.z_playerShip = new PlayerShip(Content.Load<Texture2D>("Images\\ship2"), this.z_startingPosition);           
 
             //Set the player alive
             this.z_playerShip.setIsAlive(true);
 
             //Load the Music
-            this.z_beautifulDarkness = Content.Load<Song>("Audio\\OutSideMyComfortZone");
+            this.z_beautifulDarkness = Content.Load<Song>("Audio\\Music\\OutSideMyComfortZone");
             MediaPlayer.IsRepeating = true;
 
             //Load Fonts
             this.z_timerFont = Content.Load<SpriteFont>("Fonts\\TimerFont");
+            this.z_livesFont = Content.Load<SpriteFont>("Fonts\\LivesFont");
 
             //Load Achivement Stuff
             this.z_achivementFail = new GameObject(Content.Load<Texture2D>("Images\\AchivementFailed"));
             this.z_achivementFail.setPosition(new Vector2((this.z_viewportRec.Width/2)-(this.z_achivementFail.getSprite().Width/2),
                                                             this.z_viewportRec.Height-100));
-            this.z_achivementSound = Content.Load<SoundEffect>("Audio\\AchievementSound");
+            this.z_achivementSound = Content.Load<SoundEffect>("Audio\\SoundFX\\AchievementSound");
 
             //Load the Settings for the asteroidManager
             this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Moderate, this.z_viewportRec,
                                                          this.z_contentManager, this.z_spriteBatch);
+
+            //Load the Settings for the MissleManager
+            this.z_missleManager = new MissleManager(this.z_viewportRec, this.z_contentManager,
+                                                     Content.Load<SoundEffect>("Audio\\SoundFX\\LaserPellet"));
             
         }
 
@@ -184,7 +193,7 @@ namespace Space_Cat_Bandits
             }
 
             //Update Asteroid Manager
-            this.z_asteroidManager.updateAsteroids();
+            this.z_asteroidManager.updateAsteroids(this.z_playerShip);
 
             //########### Input for Controls and Options ########################################
 
@@ -200,11 +209,14 @@ namespace Space_Cat_Bandits
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
                 //Input for moving the player's ship on the xbox360
-
+                //Acceleration needs to be worked on for xbox controller
                 this.z_playerShip.setVelocity(new Vector2(gamePadState.ThumbSticks.Left.X * 0.07f,
                                                         gamePadState.ThumbSticks.Left.Y * 0.07f));
                 this.z_playerShip.upDatePosition();
 
+                //Update Missle Manager
+                this.z_missleManager.MissleManagerUpdateFriendlyGamepad(gamePadState, this.z_previousGamePadState,
+                                                                        this.z_playerShip, this.z_spriteBatch);
 
 
                 //At the end of Xbox Controller Updates
@@ -297,6 +309,11 @@ namespace Space_Cat_Bandits
             this.z_playerShip.playerShipUpdate(gameTime, this.z_viewportRec);
 
 
+            //Update Missle Manager
+            this.z_missleManager.MissleManagerUpdateFriendlyKeyboard(keyboardState, this.z_previousKeyboardState,
+                                                                     this.z_playerShip, this.z_spriteBatch);
+
+
             //End of Keyboard Updates
             this.z_previousKeyboardState = keyboardState;
 #endif
@@ -327,26 +344,28 @@ namespace Space_Cat_Bandits
             this.z_asteroidManager.drawAsteroids();
             
             //Draw Player Ship
-            if(this.z_playerShip.getIsAlive())
-                this.z_spriteBatch.Draw(this.z_playerShip.getSprite(),
-                                        this.z_playerShip.getPosition(),
-                                        Color.White);
+            this.z_playerShip.draw(this.z_spriteBatch, gameTime);
 
             //Draw Fonts
             this.z_spriteBatch.DrawString(this.z_timerFont, "Time: " + Math.Round(z_gameTimer,2),
                                           new Vector2(.01f * this.z_viewportRec.Width, .01f * this.z_viewportRec.Height),
                                           Color.Yellow);
+            this.z_spriteBatch.DrawString(this.z_livesFont, "Lives: " + this.z_playerShip.getLives(),
+                                          new Vector2(.01f * this.z_viewportRec.Width, .05f * this.z_viewportRec.Height),
+                                          Color.White);
 
             //Draw any achivements
             if (this.z_achivementFail.getIsAlive())
                 this.z_spriteBatch.Draw(this.z_achivementFail.getSprite(), this.z_achivementFail.getPosition(), Color.White);
 
-            
+            //Draw Missles
+            this.z_missleManager.MissleManagerDrawAllMissles();
 
 
 
 
 
+            //Close Sprite Batch
             this.z_spriteBatch.End();
 
             base.Draw(gameTime);

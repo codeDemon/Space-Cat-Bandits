@@ -20,6 +20,7 @@ namespace Space_Cat_Bandits
         private Vector2 z_center;
         private float z_rotation;
         private float z_rotationSpeed;
+        private bool z_hasBeenhit;
 
 
         //Constructor
@@ -30,6 +31,7 @@ namespace Space_Cat_Bandits
             this.z_center = new Vector2(this.getSprite().Width / 2, this.getSprite().Height / 2);
             this.setVelocity(new Vector2(0 , 2));
             this.z_rotationSpeed = 0f;
+            this.z_hasBeenhit = false;
         }
 
 
@@ -46,6 +48,10 @@ namespace Space_Cat_Bandits
         {
             return this.z_rotationSpeed;
         }
+        public bool getHasBeenHit()
+        {
+            return this.z_hasBeenhit;
+        }
 
         //Mutator Methods
         public void setCenter(Vector2 newCenter)
@@ -60,12 +66,18 @@ namespace Space_Cat_Bandits
         {
             this.z_rotationSpeed = newRotSpeed;
         }
+        public void sethasBeenHit(bool newBool)
+        {
+            this.z_hasBeenhit = newBool;
+        }
 
         //Asteroid Update Method
         public void AstroUpdate()
         {
             this.z_rotation += this.z_rotationSpeed;
             this.upDatePositionWithSpeed();
+            this.setHitRec(new Rectangle((int)this.getPosition().X, (int)this.getPosition().Y,
+                                         this.getSprite().Width, this.getSprite().Height));
         }
 
     }
