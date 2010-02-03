@@ -22,7 +22,7 @@ namespace Space_Cat_Bandits
         public ScrollingBackground(Texture2D background)
             : base(background)
         {
-            this.setVelocity(new Vector2(0f,0.1f));
+            this.setVelocity(new Vector2(0f,0.4f));
         }
 
         //Methods

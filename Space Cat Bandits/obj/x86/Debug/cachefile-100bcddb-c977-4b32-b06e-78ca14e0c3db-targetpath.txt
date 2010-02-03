@@ -15,3 +15,4 @@ Content\Audio\Music\OutsideMyComfortZone.wma
 Content\Audio\SoundFX\AchievementSound.xnb
 Content\Audio\SoundFX\LaserPellet.xnb
 Content\Fonts\LivesFont.xnb
+Content\Images\EnemyShips\EnemyShip1.xnb

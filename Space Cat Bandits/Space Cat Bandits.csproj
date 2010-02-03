@@ -86,10 +86,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI_ZigZag.cs" />
     <Compile Include="Asteroid.cs" />
     <Compile Include="AsteroidManager.cs" />
     <Compile Include="CollisionManager.cs" />
+    <Compile Include="Enemy1.cs" />
+    <Compile Include="EnemyManager.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="IArtificialIntelligence.cs" />
+    <Compile Include="IEnemyShip.cs" />
     <Compile Include="MissleManager.cs" />
     <Compile Include="MissleObject.cs" />
     <Compile Include="PlayerMissle1.cs" />

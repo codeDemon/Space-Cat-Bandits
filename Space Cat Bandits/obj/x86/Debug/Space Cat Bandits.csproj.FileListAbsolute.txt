@@ -21,3 +21,4 @@ C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space C
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Beautiful_Darkness.wma
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\OutsideMyComfortZone.wma
 C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Fonts\LivesFont.xnb
+C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\EnemyShips\EnemyShip1.xnb

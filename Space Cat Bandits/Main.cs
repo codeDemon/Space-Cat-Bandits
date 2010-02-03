@@ -36,6 +36,8 @@ namespace Space_Cat_Bandits
         private AsteroidManager z_asteroidManager;
         //The Missle Manager
         private MissleManager z_missleManager;
+        //The Enemy Manager
+        private EnemyManager z_enemyManager;
         //Variables for GameObjects
         private PlayerShip z_playerShip;
         //Variables For Music
@@ -111,12 +113,15 @@ namespace Space_Cat_Bandits
             this.z_achivementSound = Content.Load<SoundEffect>("Audio\\SoundFX\\AchievementSound");
 
             //Load the Settings for the asteroidManager
-            this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Moderate, this.z_viewportRec,
+            this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Heavy, this.z_viewportRec,
                                                          this.z_contentManager, this.z_spriteBatch);
 
             //Load the Settings for the MissleManager
             this.z_missleManager = new MissleManager(this.z_viewportRec, this.z_contentManager,
                                                      Content.Load<SoundEffect>("Audio\\SoundFX\\LaserPellet"));
+
+            //Load the Settings for the EnemyManager
+            this.z_enemyManager = new EnemyManager(this.z_contentManager, this.z_spriteBatch, this.z_viewportRec);
             
         }
 
@@ -313,6 +318,9 @@ namespace Space_Cat_Bandits
             this.z_missleManager.MissleManagerUpdateFriendlyKeyboard(keyboardState, this.z_previousKeyboardState,
                                                                      this.z_playerShip, this.z_spriteBatch);
 
+            //Update the Enemy Manager
+            this.z_enemyManager.mainUpdate(gameTime);
+
 
             //End of Keyboard Updates
             this.z_previousKeyboardState = keyboardState;
@@ -340,6 +348,9 @@ namespace Space_Cat_Bandits
                     Color.White, 0, new Vector2(0, 0), this.z_backgroundImage2.Scale(this.z_viewportRec)
                     ,SpriteEffects.None, 1);
 
+            //Draw Enemies from EnemyManager
+            this.z_enemyManager.draw();
+
             //Draw any asteroids from AsteroidManager
             this.z_asteroidManager.drawAsteroids();
             
@@ -361,7 +372,7 @@ namespace Space_Cat_Bandits
             //Draw Missles
             this.z_missleManager.MissleManagerDrawAllMissles();
 
-
+            
 
 
 

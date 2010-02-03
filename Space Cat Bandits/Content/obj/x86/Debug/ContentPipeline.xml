@@ -138,6 +138,15 @@
       <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Fonts\LivesFont.xnb</Output>
       <Time>2010-01-31T22:41:42.3538134-05:00</Time>
     </Item>
+    <Item>
+      <Source>Images\EnemyShips\EnemyShip1.png</Source>
+      <Name>Images\EnemyShips\EnemyShip1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\EnemyShips\EnemyShip1.xnb</Output>
+      <Time>2010-02-03T00:05:36.203125-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

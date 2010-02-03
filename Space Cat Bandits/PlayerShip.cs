@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region using
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -11,6 +12,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using System.Text;
+#endregion
+
 
 namespace Space_Cat_Bandits
 {
@@ -24,6 +27,8 @@ namespace Space_Cat_Bandits
             zero
         }
 
+
+        #region InstanceVariables
         //Instance Variables ----------------------------------------------------------------------------
         private int z_health;
         private int z_lives;
@@ -39,7 +44,11 @@ namespace Space_Cat_Bandits
         private float z_InvincibleTimer;
         private float z_drawTimer;
         private Vector2 z_startingPosition;
+        #endregion
 
+
+
+        #region Constructor
         //Constructor -----------------------------------------------------------------------------------     
         public PlayerShip(Texture2D loadedSprite, Vector2 startingPosition)
             : base(loadedSprite)
@@ -60,8 +69,11 @@ namespace Space_Cat_Bandits
             this.z_startingPosition = startingPosition;
             this.setPosition(z_startingPosition);
         }
+        #endregion
 
 
+
+        #region Accessors
         //Accessor Methods ------------------------------------------------------------------------------
         public int getHealth()
         {
@@ -83,7 +95,11 @@ namespace Space_Cat_Bandits
         {
             return this.z_IsInvincible;
         }
+        #endregion
 
+
+
+        #region Mutators
         //Mutator Methods -------------------------------------------------------------------------------
         public void setHealth(int newHealth)
         {
@@ -105,7 +121,11 @@ namespace Space_Cat_Bandits
         {
             this.z_IsInvincible = itIs;
         }
+        #endregion
 
+
+
+        #region AccelerationMethods
         //Acceleration Methods ---------------------------------------------------------------------------------
         public void accelerateLeft()
         {
@@ -147,9 +167,11 @@ namespace Space_Cat_Bandits
                 this.currentYstate = AccelerationState.positive;
             }
         }
+        #endregion
 
 
 
+        #region UpdateMethod
         //The main Update Method for the Player Ship --------------------------------------------------------
         public void playerShipUpdate(GameTime gameTime, Rectangle viewPort)
         {
@@ -308,10 +330,13 @@ namespace Space_Cat_Bandits
 
             }
 
-            
+
         }
+        #endregion
 
 
+
+        #region HelperMethod
         //Helper Methods for updating the player's ship
         private void resetXvelocity()
         {
@@ -325,10 +350,11 @@ namespace Space_Cat_Bandits
             this.setVelocity(new Vector2(this.getVelocity().X, 0));
             this.z_IsSlowingDownY = false;
         }
+        #endregion
 
 
 
-
+        #region DrawMethod
         //Draw Method for PlayerShip
         public void draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -355,6 +381,7 @@ namespace Space_Cat_Bandits
 
             }
         }
+        #endregion
 
 
 
