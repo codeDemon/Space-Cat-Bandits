@@ -120,9 +120,12 @@ namespace Space_Cat_Bandits
                     this.z_reachedPoint1 = true;
                     return new Vector2(0, 0);
                 }
-            }   
-            this.z_removeEnemy = true;
-            return new Vector2(0, 0);      
+            }
+            else
+            {
+                this.z_removeEnemy = true;
+                return new Vector2(0, 0);
+            }
         }
 
         public float calculateNewSpeed(Microsoft.Xna.Framework.Vector2 currentPosition, Microsoft.Xna.Framework.GameTime gameTime)

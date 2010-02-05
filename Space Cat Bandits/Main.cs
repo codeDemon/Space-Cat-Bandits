@@ -1,3 +1,4 @@
+#region using
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,15 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+#endregion
+
 
 namespace Space_Cat_Bandits
 {
     //Main Class
     public class Main : Microsoft.Xna.Framework.Game
     {
+        #region Variables
         //Declare Instance Variables ----------------------------------------------------------------------------
         private GraphicsDeviceManager z_graphics;
         private SpriteBatch z_spriteBatch;
@@ -43,12 +47,14 @@ namespace Space_Cat_Bandits
         //Variables For Music
         private Song z_beautifulDarkness;
         private bool z_songStart = false;
-        private SoundEffect z_achivementSound;
+        private SoundEffect z_achievementSound;
         //Variables For Text Fonts
         private SpriteFont z_timerFont;
         private SpriteFont z_livesFont;
-        
-        
+        #endregion
+
+
+
         //Constructor -------------------------------------------------------------------------------------------
         public Main()
         {
@@ -107,10 +113,10 @@ namespace Space_Cat_Bandits
             this.z_livesFont = Content.Load<SpriteFont>("Fonts\\LivesFont");
 
             //Load Achivement Stuff
-            this.z_achivementFail = new GameObject(Content.Load<Texture2D>("Images\\AchivementFailed"));
+            this.z_achivementFail = new GameObject(Content.Load<Texture2D>("Images\\AchievementFailed"));
             this.z_achivementFail.setPosition(new Vector2((this.z_viewportRec.Width/2)-(this.z_achivementFail.getSprite().Width/2),
                                                             this.z_viewportRec.Height-100));
-            this.z_achivementSound = Content.Load<SoundEffect>("Audio\\SoundFX\\AchievementSound");
+            this.z_achievementSound = Content.Load<SoundEffect>("Audio\\SoundFX\\AchievementSound");
 
             //Load the Settings for the asteroidManager
             this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Heavy, this.z_viewportRec,
@@ -157,7 +163,7 @@ namespace Space_Cat_Bandits
             if (this.z_gameTimer > this.z_interval1 && !this.z_achivementFailUnlocked)
             {
                 this.z_achivementFail.setIsAlive(true);
-                this.z_achivementSound.Play();
+                this.z_achievementSound.Play();
                 this.z_achivementFailUnlocked = true;
             }
             if (this.z_gameTimer > 21)
@@ -233,34 +239,36 @@ namespace Space_Cat_Bandits
 #if !XBOX
             //Local Variables for Keyboard
             KeyboardState keyboardState = Keyboard.GetState();
-            
 
+            #region ShipControls
             //Input for accelerating the ship --------------------------------------------------------
             //Move Left
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
-            {
-                if (z_accelTimerX < 100)
-                    z_accelTimerX += (float)gameTime.ElapsedGameTime.Milliseconds;
-                else
-                    if (this.z_playerShip.getPosition().X > 1)
-                    {
-                        this.z_playerShip.accelerateLeft();
-                        z_accelTimerX = 0;
-                    }
-            }
+                {
+                    if (z_accelTimerX < 100)
+                        z_accelTimerX += (float)gameTime.ElapsedGameTime.Milliseconds;
+                    else
+                        if (this.z_playerShip.getPosition().X > 1)
+                        {
+                            this.z_playerShip.accelerateLeft();
+                            z_accelTimerX = 0;
+                        }
+                }
+
             //Move Right
-            else if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
+            if ((keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))) 
             {
                 if (z_accelTimerX < 100)
                     z_accelTimerX += (float)gameTime.ElapsedGameTime.Milliseconds;
                 else
-                    if (this.z_playerShip.getPosition().X + this.z_playerShip.getSprite().Width < 
+                    if (this.z_playerShip.getPosition().X + this.z_playerShip.getSprite().Width <
                         this.z_graphics.GraphicsDevice.Viewport.Width - 1)
                     {
                         this.z_playerShip.accelerateRight();
                         z_accelTimerX = 0;
                     }
             }
+
             //Move Up
             if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
             {
@@ -287,27 +295,54 @@ namespace Space_Cat_Bandits
                     }
             }
 
+
+            //Don't Move in the X direction when opposite keys are pressed
+            if (((keyboardState.IsKeyDown(Keys.Right) && (keyboardState.IsKeyDown(Keys.Left)) ||
+                ((keyboardState.IsKeyDown(Keys.Right) && (keyboardState.IsKeyDown(Keys.A)))) ||
+                ((keyboardState.IsKeyDown(Keys.Left) && (keyboardState.IsKeyDown(Keys.D)))) ||
+                ((keyboardState.IsKeyDown(Keys.A) && (keyboardState.IsKeyDown(Keys.D)))))))
+            {
+                this.z_playerShip.setVelocity(new Vector2(0, this.z_playerShip.getVelocity().Y));
+                this.z_playerShip.setIsSlowingDownX(false);
+            }
+
+            //Don't Move in the Y direction when opposite keys are pressed
+            if (((keyboardState.IsKeyDown(Keys.Up) && (keyboardState.IsKeyDown(Keys.Down)) ||
+                ((keyboardState.IsKeyDown(Keys.Up) && (keyboardState.IsKeyDown(Keys.S)))) ||
+                ((keyboardState.IsKeyDown(Keys.Down) && (keyboardState.IsKeyDown(Keys.W)))) ||
+                ((keyboardState.IsKeyDown(Keys.W) && (keyboardState.IsKeyDown(Keys.S)))))))
+            {
+                this.z_playerShip.setVelocity(new Vector2(this.z_playerShip.getVelocity().X, 0));
+                this.z_playerShip.setIsSlowingDownY(false);
+            }
+
+
             //Check if a key was let go for deAccelerating to a stop -------------------------------------
             if ((this.z_previousKeyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.Left)) ||
-                (this.z_previousKeyboardState.IsKeyDown(Keys.A) && keyboardState.IsKeyUp(Keys.A)))
-            {
-                this.z_playerShip.setIsSlowingDownX(true);
-            }
+                (this.z_previousKeyboardState.IsKeyDown(Keys.A) && keyboardState.IsKeyUp(Keys.A)) &&
+                (!(keyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.A))) &&
+                (!(keyboardState.IsKeyDown(Keys.A) && keyboardState.IsKeyUp(Keys.Left))))
+                    this.z_playerShip.setIsSlowingDownX(true);
+
             else if ((this.z_previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||
-                (this.z_previousKeyboardState.IsKeyDown(Keys.D) && keyboardState.IsKeyUp(Keys.D)))
-            {
-                this.z_playerShip.setIsSlowingDownX(true);
-            }
+                (this.z_previousKeyboardState.IsKeyDown(Keys.D) && keyboardState.IsKeyUp(Keys.D)) &&
+                (!(keyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.D))) &&
+                (!(keyboardState.IsKeyDown(Keys.D) && keyboardState.IsKeyUp(Keys.Right))))
+                    this.z_playerShip.setIsSlowingDownX(true);
+
             if ((this.z_previousKeyboardState.IsKeyDown(Keys.Up) && keyboardState.IsKeyUp(Keys.Up)) ||
-                (this.z_previousKeyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyUp(Keys.W)))
-            {
-                this.z_playerShip.setIsSlowingDownY(true);
-            }
+                (this.z_previousKeyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyUp(Keys.W)) &&
+                (!(keyboardState.IsKeyDown(Keys.Up) && keyboardState.IsKeyUp(Keys.W))) &&
+                (!(keyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyUp(Keys.Up))))
+                    this.z_playerShip.setIsSlowingDownY(true);
+           
             else if ((this.z_previousKeyboardState.IsKeyDown(Keys.Down) && keyboardState.IsKeyUp(Keys.Down)) ||
-                (this.z_previousKeyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyUp(Keys.S)))
-            {
-                this.z_playerShip.setIsSlowingDownY(true);
-            }
+                (this.z_previousKeyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyUp(Keys.S)) &&
+                (!(keyboardState.IsKeyDown(Keys.Down) && keyboardState.IsKeyUp(Keys.S))) &&
+                (!(keyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyUp(Keys.Down))))
+                    this.z_playerShip.setIsSlowingDownY(true);
+            #endregion
+
 
 
             //Perform the Update on The Ship

@@ -38,8 +38,8 @@ namespace Space_Cat_Bandits
         private bool z_IsSlowingDownY;
         private float z_accelTimerX;
         private float z_accelTimerY;
-        private AccelerationState currentXstate;
-        private AccelerationState currentYstate;
+        private AccelerationState z_currentXstate;
+        private AccelerationState z_currentYstate;
         private bool z_IsInvincible;
         private float z_InvincibleTimer;
         private float z_drawTimer;
@@ -60,8 +60,8 @@ namespace Space_Cat_Bandits
             this.z_IsSlowingDownY = false;
             this.z_accelTimerX = 0;
             this.z_accelTimerY = 0;
-            this.currentXstate = AccelerationState.zero;
-            this.currentYstate = AccelerationState.zero;
+            this.z_currentXstate = AccelerationState.zero;
+            this.z_currentYstate = AccelerationState.zero;
             this.z_lives = 10;
             this.z_IsInvincible = true;
             this.z_InvincibleTimer = 0;
@@ -95,6 +95,29 @@ namespace Space_Cat_Bandits
         {
             return this.z_IsInvincible;
         }
+        public bool isAcceleratingX()
+        {
+            switch (this.z_currentXstate)
+            {
+                case AccelerationState.zero:
+                    {
+                        return false;
+                    }
+                default: return true; 
+            }
+        }
+        public bool isAcceleratingY()
+        {
+            switch (this.z_currentYstate)
+            {
+                case AccelerationState.zero:
+                    {
+                        return false;
+                    }
+                default: return true;
+            }
+        }
+
         #endregion
 
 
@@ -134,7 +157,7 @@ namespace Space_Cat_Bandits
                 if (this.z_IsSlowingDownX)
                     this.resetXvelocity();
                 this.setVelocity(new Vector2(this.getVelocity().X - this.z_acceleration, this.getVelocity().Y));
-                this.currentXstate = AccelerationState.negative;            
+                this.z_currentXstate = AccelerationState.negative;            
             }
         }
         public void accelerateRight()
@@ -144,7 +167,7 @@ namespace Space_Cat_Bandits
                 if (this.z_IsSlowingDownX)
                     this.resetXvelocity();
                 this.setVelocity(new Vector2(this.getVelocity().X + this.z_acceleration, this.getVelocity().Y));
-                this.currentXstate = AccelerationState.positive;
+                this.z_currentXstate = AccelerationState.positive;
             }
         }
         public void accelerateUp()
@@ -154,7 +177,7 @@ namespace Space_Cat_Bandits
                 if (this.z_IsSlowingDownY)
                     this.resetYvelocity();
                 this.setVelocity(new Vector2(this.getVelocity().X, this.getVelocity().Y - this.z_acceleration));
-                this.currentYstate = AccelerationState.negative;
+                this.z_currentYstate = AccelerationState.negative;
             }
         }
         public void accelerateDown()
@@ -164,7 +187,7 @@ namespace Space_Cat_Bandits
                 if (this.z_IsSlowingDownY)
                     this.resetYvelocity();
                 this.setVelocity(new Vector2(this.getVelocity().X, this.getVelocity().Y + this.z_acceleration));
-                this.currentYstate = AccelerationState.positive;
+                this.z_currentYstate = AccelerationState.positive;
             }
         }
         #endregion
@@ -224,13 +247,13 @@ namespace Space_Cat_Bandits
             
 
             //Ensure that the ship can not leave the viewPort ever
-            if((this.getPosition().X <= 1 && this.currentXstate == AccelerationState.negative) || 
+            if((this.getPosition().X <= 1 && this.z_currentXstate == AccelerationState.negative) || 
                 (this.getPosition().X + this.getSprite().Width >= (float)viewPort.Width - 1 && 
-                 this.currentXstate == AccelerationState.positive))
+                 this.z_currentXstate == AccelerationState.positive))
                     this.resetXvelocity();
-            if((this.getPosition().Y <= 1 && this.currentYstate == AccelerationState.negative) || 
+            if((this.getPosition().Y <= 1 && this.z_currentYstate == AccelerationState.negative) || 
                (this.getPosition().Y + this.getSprite().Height >= (float)viewPort.Height -1 &&
-                this.currentYstate == AccelerationState.positive))
+                this.z_currentYstate == AccelerationState.positive))
                     this.resetYvelocity();
 
             //Bring ship back to screen if ever necessary
@@ -257,7 +280,7 @@ namespace Space_Cat_Bandits
                     this.z_accelTimerX = 0;
                     //Time to bring the x component of velocity closer to zero
                     //Determine if velocity is greater or less than zero by getting the current State of acceleration
-                    switch (this.currentXstate)
+                    switch (this.z_currentXstate)
                     {
                         case AccelerationState.negative:
                             {
@@ -298,7 +321,7 @@ namespace Space_Cat_Bandits
                     this.z_accelTimerY = 0;
                     //Time to bring the Y component of velocity closer to zero
                     //Determine if velocity is greater or less than zero by getting the current State of acceleration
-                    switch (this.currentYstate)
+                    switch (this.z_currentYstate)
                     {
                         case AccelerationState.negative:
                             {
@@ -340,13 +363,13 @@ namespace Space_Cat_Bandits
         //Helper Methods for updating the player's ship
         private void resetXvelocity()
         {
-            this.currentXstate = AccelerationState.zero;
+            this.z_currentXstate = AccelerationState.zero;
             this.setVelocity(new Vector2(0, this.getVelocity().Y));
             this.z_IsSlowingDownX = false;
         }
         private void resetYvelocity()
         {
-            this.currentYstate = AccelerationState.zero;
+            this.z_currentYstate = AccelerationState.zero;
             this.setVelocity(new Vector2(this.getVelocity().X, 0));
             this.z_IsSlowingDownY = false;
         }

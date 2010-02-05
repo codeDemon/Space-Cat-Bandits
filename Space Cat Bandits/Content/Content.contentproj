@@ -73,8 +73,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\AchivementFailed.png">
-      <Name>AchivementFailed</Name>
+    <Compile Include="Images\AchievementFailed.png">
+      <Name>AchievementFailed</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
