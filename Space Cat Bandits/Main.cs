@@ -11,6 +11,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+// In the .NET pane, scroll down and select System.Xml. 
+// Additional Using Statments Needed for the Storage Functions. 
+using System.IO;
+using System.Xml.Serialization; 
+
 #endregion
 
 
@@ -36,6 +41,7 @@ namespace Space_Cat_Bandits
         private GamePadState z_previousGamePadState = GamePad.GetState(PlayerIndex.One);
         private KeyboardState z_previousKeyboardState = Keyboard.GetState();
         private Vector2 z_startingPosition;
+        
         //The Asteroid Manager
         private AsteroidManager z_asteroidManager;
         //The Missle Manager
@@ -53,13 +59,28 @@ namespace Space_Cat_Bandits
         private SpriteFont z_livesFont;
         #endregion
 
-
+        [Serializable]
+        public struct PlayerData
+        {
+            public string name;
+            public Vector2 position;
+        } 
 
         //Constructor -------------------------------------------------------------------------------------------
         public Main()
         {
             this.z_graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //this.Window.AllowUserResizing = true;
+            //this.Window.ClientSizeChanged += new EventHandler(Window_ClientSizeChanged);
+            //this.Components.Add(new GamerServicesComponent(this));
+            //this.z_graphics.ToggleFullScreen();
+        }
+
+        void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            this.z_viewportRec = new Rectangle(0, 0, GraphicsDevice.PresentationParameters.BackBufferWidth,
+                                                GraphicsDevice.PresentationParameters.BackBufferHeight);
         }
 
 
@@ -105,7 +126,7 @@ namespace Space_Cat_Bandits
             this.z_playerShip.setIsAlive(true);
 
             //Load the Music
-            this.z_beautifulDarkness = Content.Load<Song>("Audio\\Music\\OutSideMyComfortZone");
+            this.z_beautifulDarkness = Content.Load<Song>("Audio\\Music\\ATreeFalls");
             MediaPlayer.IsRepeating = true;
 
             //Load Fonts
@@ -119,7 +140,7 @@ namespace Space_Cat_Bandits
             this.z_achievementSound = Content.Load<SoundEffect>("Audio\\SoundFX\\AchievementSound");
 
             //Load the Settings for the asteroidManager
-            this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Heavy, this.z_viewportRec,
+            this.z_asteroidManager = new AsteroidManager(AsteroidManager.AsteroidManagerState.Lite, this.z_viewportRec,
                                                          this.z_contentManager, this.z_spriteBatch);
 
             //Load the Settings for the MissleManager
@@ -141,20 +162,6 @@ namespace Space_Cat_Bandits
         //Main Update Method -------------------------------------------------------------------------------------
         protected override void Update(GameTime gameTime)
         {
-            //Update The game Timer
-            /*
-             * if(game is not paused)
-             * //->Then update the gameTime
-             * //For changing events will be something like
-             * if(z_gameTimer >= some interval)
-             * {
-             *      //Do Some Stuff
-             *      //Unload current level
-             *      //Play a talk scene
-             *      //Load next level
-             *      z_gameTimer = 0.0f;
-             * }
-             * */
 
             //Update GameTimer
             this.z_gameTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -239,6 +246,9 @@ namespace Space_Cat_Bandits
 #if !XBOX
             //Local Variables for Keyboard
             KeyboardState keyboardState = Keyboard.GetState();
+
+            if(keyboardState.IsKeyDown(Keys.Escape))
+                this.Exit();
 
             #region ShipControls
             //Input for accelerating the ship --------------------------------------------------------
@@ -373,6 +383,8 @@ namespace Space_Cat_Bandits
             GraphicsDevice.Clear(Color.Black);
             this.z_spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
 
+            
+
             //Draw Background images
             if(this.z_backgroundImage1.getIsAlive())
                 this.z_spriteBatch.Draw(this.z_backgroundImage1.getSprite(), this.z_backgroundImage1.getPosition(),null,
@@ -406,8 +418,6 @@ namespace Space_Cat_Bandits
 
             //Draw Missles
             this.z_missleManager.MissleManagerDrawAllMissles();
-
-            
 
 
 

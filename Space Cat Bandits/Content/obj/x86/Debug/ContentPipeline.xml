@@ -147,6 +147,127 @@
       <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Images\AchievementFailed.xnb</Output>
       <Time>2010-01-26T04:24:34.234375-05:00</Time>
     </Item>
+    <Item>
+      <Source>Screens\ArrowSelection.JPG</Source>
+      <Name>Screens\ArrowSelection</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\ArrowSelection.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\ConfirmationMenu.JPG</Source>
+      <Name>Screens\ConfirmationMenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\ConfirmationMenu.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\GameOverScreen.JPG</Source>
+      <Name>Screens\GameOverScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\GameOverScreen.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\LoadingStatic.JPG</Source>
+      <Name>Screens\LoadingStatic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\LoadingStatic.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\LogoScreen.JPG</Source>
+      <Name>Screens\LogoScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\LogoScreen.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\MainMenuScreen.JPG</Source>
+      <Name>Screens\MainMenuScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\MainMenuScreen.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\MissionMenu.JPG</Source>
+      <Name>Screens\MissionMenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\MissionMenu.xnb</Output>
+      <Time>2010-02-09T02:45:44.03125-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\ProfileNotFoundScreen.JPG</Source>
+      <Name>Screens\ProfileNotFoundScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\ProfileNotFoundScreen.xnb</Output>
+      <Time>2010-02-09T02:45:44.03125-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Screens\TitleOptions.JPG</Source>
+      <Name>Screens\TitleOptions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Screens\TitleOptions.xnb</Output>
+      <Time>2010-02-09T02:45:44.015625-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\ATreeFalls.mp3</Source>
+      <Name>Audio\Music\ATreeFalls</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\ATreeFalls.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\ATreeFalls.wma</Extra>
+      <Time>2010-02-09T05:06:27.796875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\Mark Oleson - All Good Things WIP1.mp3</Source>
+      <Name>Audio\Music\Mark Oleson - All Good Things WIP1</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - All Good Things WIP1.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - All Good Things WIP1.wma</Extra>
+      <Time>2010-02-09T05:06:27.796875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\Mark Oleson - credits demo.mp3</Source>
+      <Name>Audio\Music\Mark Oleson - credits demo</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - credits demo.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - credits demo.wma</Extra>
+      <Time>2010-02-09T05:06:27.8125-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Music\Mark Oleson - Peril Probability Prime WIP 1.mp3</Source>
+      <Name>Audio\Music\Mark Oleson - Peril Probability Prime WIP 1</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - Peril Probability Prime WIP 1.xnb</Output>
+      <Extra>C:\Documents and Settings\David\My Documents\Visual Studio 2008\Projects\Space Cat Bandits\Space Cat Bandits\bin\x86\Debug\Content\Audio\Music\Mark Oleson - Peril Probability Prime WIP 1.wma</Extra>
+      <Time>2010-02-09T05:06:27.78125-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -23,5 +23,11 @@ namespace Space_Cat_Bandits
         //This method should be calaulated using some sort of AI
         abstract public void AIUpdate(GameTime gameTime);
         
+        //These methods are used for the enemy Pool
+        abstract public void setPointer(int pointer);
+        abstract public int getPointer();
+
+        //Method for reseting an enemy status
+        abstract public void reset();
     }
 }

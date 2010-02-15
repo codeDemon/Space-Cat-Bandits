@@ -117,7 +117,7 @@ namespace Space_Cat_Bandits
                     return new Vector2(3, 0);
                 else
                 {
-                    this.z_reachedPoint1 = true;
+                    this.z_reachedPoint5 = true;
                     return new Vector2(0, 0);
                 }
             }

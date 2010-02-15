@@ -16,3 +16,20 @@ Content\Audio\SoundFX\LaserPellet.xnb
 Content\Fonts\LivesFont.xnb
 Content\Images\EnemyShips\EnemyShip1.xnb
 Content\Images\AchievementFailed.xnb
+Content\Screens\ArrowSelection.xnb
+Content\Screens\ConfirmationMenu.xnb
+Content\Screens\GameOverScreen.xnb
+Content\Screens\LoadingStatic.xnb
+Content\Screens\LogoScreen.xnb
+Content\Screens\MainMenuScreen.xnb
+Content\Screens\MissionMenu.xnb
+Content\Screens\ProfileNotFoundScreen.xnb
+Content\Screens\TitleOptions.xnb
+Content\Audio\Music\ATreeFalls.xnb
+Content\Audio\Music\ATreeFalls.wma
+Content\Audio\Music\Mark Oleson - All Good Things WIP1.xnb
+Content\Audio\Music\Mark Oleson - All Good Things WIP1.wma
+Content\Audio\Music\Mark Oleson - credits demo.xnb
+Content\Audio\Music\Mark Oleson - credits demo.wma
+Content\Audio\Music\Mark Oleson - Peril Probability Prime WIP 1.xnb
+Content\Audio\Music\Mark Oleson - Peril Probability Prime WIP 1.wma

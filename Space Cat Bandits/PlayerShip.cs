@@ -54,8 +54,10 @@ namespace Space_Cat_Bandits
             : base(loadedSprite)
         {
             this.z_health = 100;
-            this.z_maxSpeed = 3.0f;
-            this.z_acceleration = .5f;
+            //IMPORTANT!! Acceleration must divide into maxSpeed evenly.
+            this.z_maxSpeed = 4.9f; // <--- Is this divisable
+            this.z_acceleration = .7f;// <-- By this?
+            //END-IMPORTANT
             this.z_IsSlowingDownX = false;
             this.z_IsSlowingDownY = false;
             this.z_accelTimerX = 0;

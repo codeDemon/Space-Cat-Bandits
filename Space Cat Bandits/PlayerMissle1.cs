@@ -23,7 +23,7 @@ namespace Space_Cat_Bandits
             : base(MissleSprite, playersLocation, spriteBatch)
         {
             this.setVelocity(new Vector2(0, -1));
-            this.setSpeed(5);
+            this.setSpeed(8);
             this.setIsAlive(true);
         }
 
