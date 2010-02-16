@@ -44,7 +44,7 @@ namespace Space_Cat_Bandits
             if (this.z_pointer > this.z_counter)
                 throw new Exception("Out of Enemy1");
 
-            return this.z_EnemyPool.ElementAt<Enemy1>(this.z_pointer);
+            return this.z_EnemyPool.ElementAt<Enemy1>(this.z_pointer++);
         }
 
         //Mutators

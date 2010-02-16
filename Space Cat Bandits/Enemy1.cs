@@ -70,6 +70,8 @@ namespace Space_Cat_Bandits
             this.setVelocity(this.z_AI.calculateNewVelocity(this.getPosition(), gameTime));
 
             this.upDatePosition();
+            this.setHitRec(new Rectangle((int)this.getPosition().X, (int)this.getPosition().Y, 
+                          (int)this.getSprite().Width, (int)this.getSprite().Height));
         }
 
        

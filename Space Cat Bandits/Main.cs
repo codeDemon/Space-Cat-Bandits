@@ -74,7 +74,7 @@ namespace Space_Cat_Bandits
             //this.Window.AllowUserResizing = true;
             //this.Window.ClientSizeChanged += new EventHandler(Window_ClientSizeChanged);
             //this.Components.Add(new GamerServicesComponent(this));
-            //this.z_graphics.ToggleFullScreen();
+            this.z_graphics.ToggleFullScreen();
         }
 
         void Window_ClientSizeChanged(object sender, EventArgs e)

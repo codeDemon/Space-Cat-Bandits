@@ -30,6 +30,7 @@ namespace Space_Cat_Bandits
         private Rectangle z_viewPort;
         private Texture2D z_friendlyMissleSprite1;
         private SoundEffect z_fireSound1;
+        //private List<IEnemyShip> z_EnemyShipList;
 
         //Constructor ----------------------------------------------------------------
         public MissleManager(Rectangle newViewPort, ContentManager content, SoundEffect sound)
@@ -39,6 +40,7 @@ namespace Space_Cat_Bandits
             this.z_viewPort = newViewPort;
             this.z_friendlyMissleSprite1 = content.Load<Texture2D>("Images\\Missles\\Ball1");
             this.z_fireSound1 = sound;
+            //this.z_EnemyShipList = new List<IEnemyShip>();
         }
 
         //Accessor Methods -----------------------------------------------------------
@@ -75,6 +77,8 @@ namespace Space_Cat_Bandits
         public void MissleManagerUpdateFriendlyKeyboard(KeyboardState currentKeyState, KeyboardState previousKeyState,
                                                         PlayerShip playerShip, SpriteBatch spriteBatch)
         {
+            //For the simple collision checking
+            //this.z_EnemyShipList = enemyList;
             //The Alogrithm:
             //Determine if the player shot a missle
             //If so then add it the List
@@ -106,6 +110,8 @@ namespace Space_Cat_Bandits
         public void MissleManagerUpdateFriendlyGamepad(GamePadState currentPadState, GamePadState previousPadState,
                                                         PlayerShip playerShip, SpriteBatch spriteBatch)
         {
+            //For the simple collision checking
+            //this.z_EnemyShipList = enemyList;
             //Same Algorithm as before, but with a gamePad controller [Fire = right Trigger]
             if (currentPadState.Triggers.Right >= .5f && previousPadState.Triggers.Right == 0 && playerShip.getIsAlive())
             {
@@ -142,7 +148,25 @@ namespace Space_Cat_Bandits
                     this.z_FriendlyMissles.Remove(this.z_FriendlyMissles[i]);
                     //Since a Missle was just removed from the list, ensure i is poitning to the next missle
                     i--;
+                    continue;
                 }
+
+                //Do some simple colision checking
+                /*
+                for (int j = 0; j < this.z_EnemyShipList.Count; j++ )
+                {
+                    if (this.z_FriendlyMissles[i].getHitRec().Intersects(this.z_EnemyShipList[j].getHitRec()))
+                    {
+                        this.z_FriendlyMissles[i].setIsAlive(false);
+                        this.z_FriendlyMissles.Remove(this.z_FriendlyMissles[i]);
+                        i--;
+
+                        this.z_EnemyShipList[j].reset();
+                        this.z_EnemyShipList.RemoveAt(j);
+
+                    }
+                }
+                 * */
 
             }
         }

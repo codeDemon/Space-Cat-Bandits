@@ -61,6 +61,10 @@ namespace Space_Cat_Bandits
 
 
         //Accessors
+        public List<IEnemyShip> getEnemiesList()
+        {
+            return this.z_enemyShips;
+        }
         public bool getE1W1()
         {
             return this.z_ActivateE1W1;
@@ -91,8 +95,15 @@ namespace Space_Cat_Bandits
         //Populate a single enemy1 method
         private void populateAnEnemy()
         {
+            this.z_enemyShips.Add(new Enemy1(this.z_content.Load<Texture2D>("Images\\EnemyShips\\EnemyShip1"),this.z_viewPort));
+            this.z_enemyShips[0].setIsAlive(true);
+            //this.AddAnEnemy(ref this.z_poolEnemy1.borrowAnEnemy());
+            //this.z_enemyShips.Add(this.z_poolEnemy1.borrowAnEnemy());
+            //this.z_enemyShips[0].setIsAlive(true);
+        }
 
-            Enemy1 enemy = this.z_poolEnemy1.borrowAnEnemy();
+        private void AddAnEnemy(ref Enemy1 enemy)
+        {
             this.z_enemyShips.Add(enemy);
             this.z_enemyShips[0].setIsAlive(true);
         }
@@ -105,7 +116,8 @@ namespace Space_Cat_Bandits
             {
                 if (this.z_EnemiesSpawn < 3)
                 {
-                    this.z_enemyShips.Add(this.z_poolEnemy1.borrowAnEnemy());
+                    this.z_enemyShips.Add(new Enemy1(this.z_content.Load<Texture2D>("Images\\EnemyShips\\EnemyShip1"), this.z_viewPort));
+                    //this.z_enemyShips.Add(this.z_poolEnemy1.borrowAnEnemy());
                     this.z_enemyShips.Last().setIsAlive(true);
                     this.z_EnemiesSpawn++;
                 }
